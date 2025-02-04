@@ -219,7 +219,7 @@ animateOnScroll();*/
 
 //Second page know more
 
-function isInViewport(element) {
+/*function isInViewport(element) {
     const rect = element.getBoundingClientRect();
 
     const visualViewportHeight = window.innerHeight || document.documentElement.clientHeight;
@@ -273,14 +273,62 @@ function animateOnScroll() {
 window.addEventListener('scroll', animateOnScroll);
 
 // Run animation on page load if the section is in view
-animateOnScroll();
+animateOnScroll();*/
 
 // second psge end kmow more
 
 
 
 
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    const visualViewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const elementHeight = rect.bottom - rect.top;
 
+    // Check if at least 10% of the element is visible
+    return rect.top < visualViewportHeight * 0.9 && rect.bottom > 0;
+}
+
+// Function to detect if the user is scrolling down
+let lastScrollTop = 0;
+function isScrollingDown() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollingDown = scrollTop > lastScrollTop;
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Ensure it doesn't go negative
+    return scrollingDown;
+}
+
+// Trigger animations when section is in view and scrolling down
+const section = document.getElementById('animated-section');
+const leftBox = document.querySelector('.left-box');
+const rightBox = document.querySelector('.right-box');
+const heading = document.querySelector('.slide-in-heading');
+const description = document.querySelector('.zoom-in-description');
+const button = document.querySelector('.action-button');
+
+function animateOnScroll() {
+    if (isInViewport(section) && isScrollingDown()) {
+        // Trigger animations
+        leftBox.style.opacity = '1';
+        leftBox.style.transform = 'translateX(0)';
+
+        heading.style.opacity = '1';
+        description.style.opacity = '1';
+        button.style.opacity = '1';
+
+        description.style.transform = 'scale(1)';
+        button.style.transform = 'scale(1)';
+
+        rightBox.style.opacity = '1';
+        rightBox.style.transform = 'translateY(0)';
+    }
+}
+
+// Listen for scroll events
+window.addEventListener('scroll', animateOnScroll);
+
+// Run animation on page load if the section is in view
+animateOnScroll();
 
 
 
