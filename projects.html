@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="script.js">
+    <title>Properties</title>
+    <style>
+      /*  * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; }*/
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: auto;
+        }
+        
+        .card {
+            background:#f9f7f4;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.6s forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+        .card:nth-child(7) { animation-delay: 0.7s; }
+        .card:nth-child(8) { animation-delay: 0.8s; }
+        .card:nth-child(9) { animation-delay: 0.9s; }
+        
+        .card img { 
+            width: 100%; 
+            height: 200px; 
+            object-fit: cover; 
+            transition: opacity 0.3s;
+        }
+        
+        .card-content { padding: 15px; }
+        .title { font-size: 1.2em; margin-bottom: 10px; }
+        .location { color: #666; margin-bottom: 5px; }
+        .rera { color: #888; font-size: 0.9em; margin-bottom: 15px; }
+        
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn-view { border: 1px solid #ccc; background: white;color: #9D7F19; }
+        .btn-enquire { background: #9D7F19; color: white; border: none; }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            padding: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal.active { display: flex; }
+        
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: modalSlideUp 0.3s forwards;
+        }
+
+        @keyframes modalSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (min-width: 1200px) { 
+            .grid { grid-template-columns: repeat(3, 1fr); } 
+        }
+
+
+        .lgbt{
+            height: 100vh;
+            background-color: red;
+        }
+
+        .lko{
+            height: 100vh;
+            background-color: blue;
+        }
+        
+        .grid :hover img {
+            transform: scale(1.1);
+        }
+
+
+
+    /*   nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+}
+.nav
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    list-style: none;
+    margin-right: -5%;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    position: relative;
+    padding: 5px 0;
+    transition: all 0.3s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+nav a:hover {
+    color: #9D7F19;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.logo{
+    font-size: x-large;
+    color: #9D7F19;
+
+}
+.adlo{
+    height: 140px;
+    width: 140px;
+    margin-left: 50%;
+}
+
+.list-nav{
+    margin-right: 6%;
+}*/
+
+.orpro{
+    background-image: url(proj3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+    width: 100vw;
+}
+.orpro img{
+    height: 100%;
+    width: 100%;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="orpro">
+    
+    </div>
+    <nav class="nav">
+        <div class="logo-d">
+        <img class="adlo" src="lgupdated (1).svg" alt="">
+        </div>
+
+        <div class="list-nav" id="navMenu">
+        <ul class="sidebar">
+            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="know.html">Know IOC</a></li>
+            <li><a href="#alliances">Projects</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+           <!-- <li><a href="#blogs">Blogs</a></li>
+            <li><a href="#hr">HR Connect</a></li>-->
+        </ul>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="list-nav" id="navMenu">
+            
+            <ul >
+              
+                <li class="hideOnMob"><a href="index.html">Home</a></li>
+                <li class="hideOnMob"><a href="know.html">Know IOC</a></li>
+                <li class="hideOnMob"><a href="projects.html">Projects</a></li>
+                <li class="hideOnMob"><a href="contact.html">Contact Us</a></li>
+                <li class="menubtn" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+               <!-- <li><a href="#blogs">Blogs</a></li>
+                <li><a href="#hr">HR Connect</a></li>-->
+            </ul>
+            </div>
+    </nav>
+    
+
+
+    <div class="grid" id="propertyGrid"></div>
+    <div class="modal" id="propertyModal">
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+
+
+    
+<!---Foooter-->
+<footer class="footer">
+    <div class="footer-container">
+      <!-- Branding Section -->
+      <div class="branding">
+        <!--<h1>IOC</h1>
+        <p>IK ONKAR Construction</p>-->
+        <img  class="adlogo" src="lgupdated (1).svg" >
+      </div>
+
+      <!-- Corporate and Branch Office Info -->
+      <div class="office-info">
+        <p>
+          <strong>CORPORATE OFFICE</strong><br>
+          306, Siddharth Towers, Sangam Press Road, Kothrud, Pune 411038<br>
+          P: 020-67648000 / 8001 / 8002<br>
+          E: enquiry@ioc.com
+        </p>
+        <p>
+          <strong>BRANCH OFFICE</strong><br>
+          Centro Mall, 5th Floor, Next to Palash Plus Apartments,<br>
+          Opposite Euro School, Wakad, Pune 411057<br>
+          P: 020 67648080<br>
+          E: enquiry@ioc.com
+        </p>
+      </div>
+
+      <!-- Disclaimer Section -->
+      <div class="disclaimer">
+        <h3>DISCLAIMER</h3>
+        <p>
+          The visuals represented above may or may not be to scale or may not represent the actual elevation. The details of windows, doors, paints, elevation features, landscaping, ground development, trees, surroundings, color theme, etc., given here, are an artist's visual impression which may or may not be different from the actual construction of the building and development. The viewer, buyer, or any other person acknowledges the fact that his/her final booking or purchasing decision will not be based on viewing this perspective. The company is not responsible for the action of booking or purchasing a unit/s based on this perspective. For detailed information, you are requested to please contact our sales representative.
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer Bottom Section -->
+    <div class="footer-bottom">
+      Copyright © 2022 IK ONKAR Developers | All rights reserved.
+    </div>
+  </footer>
+
+  <!---/footer-->
+
+
+    
+
+    <script>
+        const properties = [
+            {
+                title: "1/2 BHK Homes",
+                name: "Univis  (*Ongoing)",
+                location: "Baner Pune",
+                rera: "P52100021070",
+                price: "32.7 Lacs Onwards",
+                images: [
+                    "img2.jpg",
+                    "img3.jpg",
+                    "img4.jpg"
+    
+                ]
+            },
+
+
+
+
+
+            
+            
+            {
+                title: "1/2 BHK Homes",
+                name: "Aariv Exotica  (*Completed)",
+                location: "Balewadi High Street Pune",
+                rera: "P52100021070",
+                price: "32.7 Lacs Onwards",
+                images: [
+                    "exotica.jpg",
+                    "contaus.jpg",
+                    "contaus2.jpg"
+    
+                ]
+            },
+            
+            
+
+
+            {
+                title: "1/2 BHK Homes",
+                name: "Aariv Elegant  (*Completed)",
+                location: "Balewadi Pune",
+                rera: "P52100021070",
+                price: "32.7 Lacs Onwards",
+                images: [
+                    "aariv.jpg",
+                    "contaus.jpg",
+                    "contaus2.jpg"
+    
+                ]
+            },
+
+
+
+
+            {
+                title: "1/2 BHK Homes",
+                name: "Univis",
+                location: "Moshi Alandi Road",
+                rera: "P52100021070",
+                price: "32.7 Lacs Onwards",
+                images: [
+                    "conta3.jpg",
+                    "contaus.jpg",
+                    "contaus2.jpg"
+    
+                ]
+            },
+
+
+
+
+            {
+                title: "1/2 BHK Homes",
+                name: "Univis",
+                location: "Moshi Alandi Road",
+                rera: "P52100021070",
+                price: "32.7 Lacs Onwards",
+                images: [
+                    "conta3.jpg",
+                    "contaus.jpg",
+                    "contaus2.jpg"
+    
+                ]
+            },
+
+
+
+
+            {
+                title: "1/2 BHK Homes",
+                name: "Univis",
+                location: "Moshi Alandi Road",
+                rera: "P52100021070",
+                price: "32.7 Lacs Onwards",
+                images: [
+                    "conta3.jpg",
+                    "contaus.jpg",
+                    "contaus2.jpg"
+    
+                ]
+            },
+
+
+            // Add 8 more properties with similar structure but different details
+            // Replace placeholder images with your actual image paths
+        ];
+
+        // Initialize grid
+        function initializeGrid() {
+            document.getElementById('propertyGrid').innerHTML = properties.map((prop, index) => `
+                <div class="card">
+                    <img src="${prop.images[0]}" alt="${prop.title}">
+                    <div class="card-content">
+                        <h3 class="title">${prop.name}</h3>
+                         <h3 class="title">${prop.location}</h3>
+                        
+                        <div class="buttons">
+                            <button class="btn btn-view" onclick="showDetails(${index})">View Details</button>
+                            <button class="btn btn-enquire" onclick="redirecten()">Enquire Now</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        let currentImageIndex = 0;
+        let slideInterval;
+        const modal = document.getElementById('propertyModal');
+        const modalContent = document.getElementById('modalContent');
+
+        function showDetails(index) {
+            const prop = properties[index];
+            modalContent.innerHTML = `
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+                <img src="${prop.images[0]}" alt="${prop.title}" style="width:100%;height:300px;object-fit:cover">
+                <div style="padding:20px">
+                    <h2 style="margin-bottom:15px">${prop.title}</h2>
+                    <p style="margin-bottom:10px">${prop.location}</p>
+                    <p style="margin-bottom:10px">RERA: ${prop.rera}</p>
+                    <p>Price: ${prop.price}</p>
+                </div>
+            `;
+            modal.classList.add('active');
+            startSlideshow(index);
+        }
+
+        function startSlideshow(index) {
+            clearInterval(slideInterval);
+            currentImageIndex = 0;
+            slideInterval = setInterval(() => {
+                currentImageIndex = (currentImageIndex + 1) % properties[index].images.length;
+                const img = modalContent.querySelector('img');
+                img.style.opacity = '0';
+                setTimeout(() => {
+                    img.src = properties[index].images[currentImageIndex];
+                    img.style.opacity = '1';
+                }, 300);
+            }, 3000);
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            clearInterval(slideInterval);
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        document.addEventListener('DOMContentLoaded', initializeGrid);
+
+
+
+
+
+
+
+
+
+        let lastScrollY = window.scrollY; // Track the last scroll position
+const navbar = document.querySelector('.nav');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > lastScrollY) {
+        // Scrolling down
+        navbar.classList.add('hidden');
+    } else {
+        // Scrolling up
+        navbar.classList.remove('hidden');
+    }
+    lastScrollY = window.scrollY;
+});
+
+
+
+
+
+
+
+function showSidebar(){
+    const sidebar = document.querySelector('.sidebar')
+    sidebar.style.display = 'flex'
+
+}
+
+function hideSidebar(){
+    const sidebar = document.querySelector('.sidebar')
+    sidebar.style.display = 'none'
+
+}
+
+
+function redirecten() {
+    localStorage.setItem("scrollTarget", "#enquiry-section");
+    window.location.href = "contact.html";
+}
+
+
+    </script>
+</body>
+</html>

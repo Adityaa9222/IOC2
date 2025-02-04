@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <title>Know IOC</title>
+    <style>
+       
+
+        .container5 {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .header span {
+            display: block;
+            text-transform: uppercase;
+            color: #666;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            color: #9D7F19;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            display: flex;
+            align-items: center;
+            padding: 80px 20px;
+            gap: 40px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+            background-color: #fff;
+            margin-bottom: 40px;
+            border-radius: 8px;
+        }
+
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section:nth-child(even) {
+            flex-direction: row-reverse;
+            
+        }
+
+        .image-container {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 1s ease-out;
+        }
+
+        .section:nth-child(even) .image-container {
+            transform: translateX(100px);
+            margin-right: 9%;
+        }
+
+        .image-container.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .content {
+            flex: 1;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+            transition-delay: 0.3s;
+        }
+
+        .content.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .content p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                flex-direction: column;
+                padding: 40px 20px;
+            }
+
+            .section:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .image-container, 
+            .section:nth-child(even) .image-container {
+                transform: translateX(-50px);
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+
+
+
+
+        .awards-section {
+            height: 50vh;
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 1200px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .awards-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .awards-section h2 {
+            text-align: center;
+            color: #9D7F19;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            font-weight: 500;
+            margin-top: -3%;
+        }
+
+        .awards-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .awards-image {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 1s ease-out;
+        }
+
+        .awards-image.active {
+            transform: scaleX(1);
+        }
+
+        .awards-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 10%;
+        }
+
+        .awards-list {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .awards-heading {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .awards-heading.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .awards-items {
+            list-style: none;
+        }
+
+        .award-item {
+            margin-bottom: 15px;
+            color: #666;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.5s ease-out;
+        }
+
+        .award-item.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .view-all {
+            display: inline-block;
+            margin-top: 20px;
+            color: #333;
+            text-decoration: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
+        }
+
+        .view-all.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .view-all:after {
+            content: ' >';
+            font-family: monospace;
+        }
+
+        @media (max-width: 768px) {
+            .awards-section {
+                height: auto;
+            }
+            
+            .awards-content {
+                flex-direction: column;
+            }
+
+            .awards-image, 
+            .awards-list {
+                width: 100%;
+            }
+        }
+
+
+
+
+
+        .picnic{
+            height: 80vh;
+            width: 100vw;
+            background-image: url(picnic.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+
+
+
+
+        
+
+
+       
+    </style>
+</head>
+<body>
+ <!--Navbar-->
+ <nav class="nav">
+    <div class="logo-d">
+    <img class="adlo" src="lgupdated (1).svg" alt="">
+    </div>
+
+    <div class="list-nav" id="navMenu">
+    <ul class="sidebar">
+        <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="know.html">Know IOC</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+       <!-- <li><a href="#blogs">Blogs</a></li>
+        <li><a href="#hr">HR Connect</a></li>-->
+    </ul>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    
+    <div class="list-nav" id="navMenu">
+            
+        <ul >
+          
+            <li class="hideOnMob"><a href="index.html">Home</a></li>
+            <li class="hideOnMob"><a href="know.html">Know IOC</a></li>
+            <li class="hideOnMob"><a href="projects.html">Projects</a></li>
+            <li class="hideOnMob"><a href="contact.html">Contact Us</a></li>
+            <li class="menubtn" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+           <!-- <li><a href="#blogs">Blogs</a></li>
+            <li><a href="#hr">HR Connect</a></li>-->
+        </ul>
+        </div>
+
+
+</nav>
+ <!-- Picnic Section -->
+ 
+    
+   <div class="picnic">
+
+   </div>
+
+    <div class="container5">
+        <header class="header">
+            <span>Our Story</span>
+            <h1>Raising expectations for real estate</h1>
+        </header>
+
+        <div class="section">
+            <div class="image-container">
+                <img src="img2.jpg" alt="Luxury Interior">
+            </div>
+            <div class="content">
+                <h2>A Heritage of Achievment</h2>
+                <p>Our tradition of distinction is shaped by the visionary drive of our exceptional team, the alliances we build with renowned collaborators, and the innovative strategies that continually push us beyond traditional limits.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="image-container">
+                <img src="luxurybed.webp" alt="Building Exterior">
+            </div>
+            <div class="content">
+                <h2>Creating Enduring Beauty</h2>
+                <p>We firmly believe that quality is not a final goal but a continuous journey. Every home we design is thoughtfully crafted with the same care and precision as if it were for ourselves. At IOC, we cultivate a commitment to excellence by embracing cutting-edge technologies and carefully choosing the finest materials available.</p>
+            </div>
+        </div>
+
+
+        <div class="section">
+            <div class="image-container">
+                <img src="luby.jpg" alt="Building Exterior">
+            </div>
+            <div class="content">
+                <h2>Luxury Without Limits</h2>
+                <p>IOC designs and develops residential and commercial properties, offering a diverse range of lifestyle options tailored to meet the refined tastes of its clientele across various locations.</p>
+            </div>
+        </div>
+
+
+        <div class="section">
+            <div class="image-container">
+                <img src="tomo.jpg" alt="Building Exterior">
+            </div>
+            <div class="content">
+                <h2>Constructing a Greener Future</h2>
+                <p>Our dedication goes beyond offering premium living experiences. We strive to make a meaningful, enduring contribution to the environment and the community. By embracing innovative designs and sustainable approaches, we are reducing our environmental impact and building homes designed to withstand the evolving challenges of climate change.</p>
+            </div>
+        </div>
+
+        <!-- Additional sections remain the same -->
+        <!-- Previous sections 3-5 continue here... -->
+
+
+
+
+
+<!-- Previous sections remain the same -->
+
+<section class="awards-section">
+    <h2>FEATURED AWARDS</h2>
+    <div class="awards-content">
+        <div class="awards-image">
+            <img src="img2.jpg" alt="Lodha Building">
+        </div>
+        <div class="awards-list">
+            <h3 class="awards-heading">Recognition for our leadership in luxury real estate and sustainability</h3>
+            <ul class="awards-items">
+                <li class="award-item">Best organisations for women 2024, by Economic Times</li>
+                <li class="award-item">ET Sustainable Organisations 2023</li>
+                <li class="award-item">Iconic Brands of India 2023 by ET Edge</li>
+                <li class="award-item">Great Manager Award 2023</li>
+                <li class="award-item">Among India's Top Builders 2024 in the National Category, Construction World Architect & Builder Awards</li>
+                <li class="award-item">Great place to work 2024-25</li>
+            </ul>
+            <a href="#" class="view-all">View All</a>
+        </div>
+    </div>
+</section>
+
+    </div>
+
+
+
+
+    <footer class="footer">
+        <div class="footer-container">
+          <!-- Branding Section -->
+          <div class="branding">
+            <!--<h1>IOC</h1>
+            <p>IK ONKAR Construction</p>-->
+            <img  class="adlogo" src="lgupdated (1).svg" >
+          </div>
+    
+          <!-- Corporate and Branch Office Info -->
+          <div class="office-info">
+            <p>
+              <strong>CORPORATE OFFICE</strong><br>
+              306, Siddharth Towers, Sangam Press Road, Kothrud, Pune 411038<br>
+              P: 020-67648000 / 8001 / 8002<br>
+              E: enquiry@ioc.com
+            </p>
+            <p>
+              <strong>BRANCH OFFICE</strong><br>
+              Centro Mall, 5th Floor, Next to Palash Plus Apartments,<br>
+              Opposite Euro School, Wakad, Pune 411057<br>
+              P: 020 67648080<br>
+              E: enquiry@ioc.com
+            </p>
+          </div>
+    
+          <!-- Disclaimer Section -->
+          <div class="disclaimer">
+            <h3>DISCLAIMER</h3>
+            <p>
+              The visuals represented above may or may not be to scale or may not represent the actual elevation. The details of windows, doors, paints, elevation features, landscaping, ground development, trees, surroundings, color theme, etc., given here, are an artist's visual impression which may or may not be different from the actual construction of the building and development. The viewer, buyer, or any other person acknowledges the fact that his/her final booking or purchasing decision will not be based on viewing this perspective. The company is not responsible for the action of booking or purchasing a unit/s based on this perspective. For detailed information, you are requested to please contact our sales representative.
+            </p>
+          </div>
+        </div>
+    
+        <!-- Footer Bottom Section -->
+        <div class="footer-bottom">
+          Copyright © 2022 IK ONKAR Constructions | All rights reserved.
+        </div>
+      </footer>
+
+      <!---/footer-->
+    
+    
+
+    <script defer>
+
+
+// Intersection Observer setup
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.3
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const section = entry.target;
+                    section.classList.add('active');
+                    section.querySelector('.image-container').classList.add('active');
+                    section.querySelector('.content').classList.add('active');
+                } else {
+                    const section = entry.target;
+                    section.classList.remove('active');
+                    section.querySelector('.image-container').classList.remove('active');
+                    section.querySelector('.content').classList.remove('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+
+
+
+
+
+
+
+
+        const awardsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const section = entry.target;
+                    section.classList.add('active');
+                    
+                    // Animate image
+                    const image = section.querySelector('.awards-image');
+                    image.classList.add('active');
+                    
+                    // Animate heading
+                    const heading = section.querySelector('.awards-heading');
+                    heading.classList.add('active');
+                    
+                    // Animate award items sequentially
+                    const items = section.querySelectorAll('.award-item');
+                    items.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.classList.add('active');
+                        }, 200 * (index + 1));
+                    });
+                    
+                    // Animate view all link
+                    const viewAll = section.querySelector('.view-all');
+                    setTimeout(() => {
+                        viewAll.classList.add('active');
+                    }, 200 * (items.length + 1));
+                } else {
+                    const section = entry.target;
+                    section.classList.remove('active');
+                    section.querySelector('.awards-image').classList.remove('active');
+                    section.querySelector('.awards-heading').classList.remove('active');
+                    section.querySelectorAll('.award-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    section.querySelector('.view-all').classList.remove('active');
+                }
+            });
+        }, {
+            threshold: 0.3
+        });
+
+        document.querySelectorAll('.awards-section').forEach(section => {
+            awardsObserver.observe(section);
+        });
+
+
+
+
+
+
+        let lastScrollY = window.scrollY; // Track the last scroll position
+const navbar = document.querySelector('.nav');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > lastScrollY) {
+        // Scrolling down
+        navbar.classList.add('hidden');
+    } else {
+        // Scrolling up
+        navbar.classList.remove('hidden');
+    }
+    lastScrollY = window.scrollY;
+});
+
+
+
+function showSidebar(){
+    const sidebar = document.querySelector('.sidebar')
+    sidebar.style.display = 'flex'
+
+}
+
+function hideSidebar(){
+    const sidebar = document.querySelector('.sidebar')
+    sidebar.style.display = 'none'
+
+}
+
+    </script>
+</body>
+</html>
