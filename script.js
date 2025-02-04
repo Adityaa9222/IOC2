@@ -286,7 +286,7 @@ function isInViewport(element) {
     const elementHeight = rect.bottom - rect.top;
 
     // Check if at least 10% of the element is visible
-    return rect.top < visualViewportHeight * 0.9 && rect.bottom > 0;
+    return rect.top < visualViewportHeight * 0.3 && rect.bottom > 0;
 }
 
 // Function to detect if the user is scrolling down
